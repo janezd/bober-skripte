@@ -68,4 +68,27 @@ Ne pravim, da ne bi bilo lepše drugače.
 
 ### Uvoz v sistem
 
-O tem poje Bajaga: *ja ne znam šta je bilo onda*. Vsako leto na novo ugibam, kako mora biti ime branchu, in Polž mi vsako leto razlaga, zakaj mi hook ne dela. To je potrebno doreči in dokumentirati.
+Kloniram git imenik
+
+git clone ssh://bober.acm.si/home/j/bober-naloge.git
+
+, notri dodam naloge in naredim push. Ob pushu se pozene hook, ki naredi sledece.
+
+```
+cd /home/j/bober-naloge
+git pull
+
+for competition in $(ls -d */); do
+    cd $competition;
+    sh link_tasks;
+    bash -c '\
+        ls skupine;\
+        for skupina in skupine/* ; do\
+            echo $skupina;\
+    done'
+    cd ..
+done
+/usr/bin/docker exec -it production_web_1 /home/bober/bober/import_tasks.sh
+```
+
+Torej je potrebno v imeniku /home/j/bober-naloge nastaviti pravi branch. Trenutno je nastavljen na '2018-drzavno', kar je verjetno narobe.
