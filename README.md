@@ -5,8 +5,8 @@
 ### Priprava skript in direktorijev
 
 1. Ustvari poddirektorij, v katerem bodo naloge, na primer `solsko2022` ali `drzavno2025`. **Državno ima isto letnico kot šolsko, čeprav poteka v naslednjem koledarskem letu.**
-2. Poberi vsebino tega repozitorija v direktorij, ki mora biti sosed direktorija `solsko2022`.
-3. V `ustvari.py` poišči vrstico, ki se začne z `outdir = os.path.join("` in zamenjaj ime direktorija, npr `../solsko2022` z aktualnim.
+2. V direktorij skopiraj task.css, da bodo naloge videti (približno) tako, kot bodo v sistemu.
+3. Poberi vsebino tega repozitorija v direktorij, ki mora biti sosed direktorija `solsko2022`.
 4. V preglednici z nalogami dodaj ID-je nalog. ID prve naloge naj ne bo 1 temveč 5, ker je to hkrati številka vrstice, sicer se boš stalno motil in prepisoval številke vrstic namesto ID-jev nalog.
 
 ### Ustvarjanje naloge
