@@ -93,7 +93,8 @@
    ```
    cd bober-naloge
    git pull
-   . solsko2022/link_tasks
+   cd solsko2022
+   . link_tasks
    /home/bober/bober/django/bober/import_tasks_venv.sh
    ```
 
