@@ -68,9 +68,9 @@
    - ustrezno spremeni direktorij, na primer `DEST_DIR = "/Users/janez/Downloads/bober-naloge/solsko2022"`
    - spremeni tudi direktorij dve vrstici nižje, v `chdir`.
 
-6. Poženi `python pakiraj.py`. Ta skopira direktorije z nalogami v repozitorij za git, poleg tega pa pripravi skripto `link_tasks`, ki bo na strežniku (ob hooku v git-u) pripravila poddirektorije za skupine in v njih simbolične povezave na naloge.
+6. `cd` nazaj v direktorij s skriptami. Tam poženi `python pakiraj.py`. Ta skopira direktorije z nalogami v repozitorij za git, poleg tega pa pripravi skripto `link_tasks`, ki bo na strežniku (ob hooku v git-u) pripravila poddirektorije za skupine in v njih simbolične povezave na naloge.
 
-7. Potisni naloge na strežnik.
+7. Potisni naloge na strežnik. `cd` v direktorij `/Users/janez/Downloads/bober-naloge/` in tam:
 
    ```
    git add -A solsko2022/*  
@@ -103,10 +103,4 @@
 
    **Če se kasneje izkaže, da v kakšnem tekmovanju manjka kakšna naloga, ali pa je kakšna napačna ali odveč,** je najbrž potrebno ponovno ročno zagnati `link_tasks`.
 
-9. Ker tudi gornji korak, kot kaže, ne uvozi nalog, je morda potrebno napisati še 
-
-    ```
-    /usr/bin/docker exec -it production_web_1 /home/bober/bober/import_tasks.sh
-    ```
-
-    Vendar to nima nobenega pozitivnega učinka, ker `/usr/bin/docker: No such file or directory`.
+9. Ker tudi gornji korak, kot kaže, ne uvozi nalog, pišeš Polžu. :)
