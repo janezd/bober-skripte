@@ -9,9 +9,11 @@
 </head>
 <body>
 <div>
-
+    <p>Besedilo</p>
+    <img src="resources/FIX_ME.svg" width="500px"/>
+    <img style="float: right; margin-left: 20px" src="resources/FIX_ME.svg" width="350px"/>
     <img src="resources/FIX_ME" />
-
+    <p>Vprašanje</p>
 </div>
 <form action="get" onsubmit="return false;" style="margin-top: 20px">
     <div id="answers">

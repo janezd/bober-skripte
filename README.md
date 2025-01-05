@@ -2,6 +2,8 @@
 
 **Disclaimer**: te skripte sem na hitro napisal, ko sem jih potreboval. Določene grozne stvari (npr. inline css v vsaki nalogi) tudi niso moja ideja, temveč so podedovane iz predprejšnjega tekmovalnega sistema. Znal bi narediti tudi lepše. :)
 
+**Popravki (by Alenka)**: Skripte za ustvarjanje nalog popravljene jeseni 2024 in ustrezno popravljena navodila.
+
 ### Priprava skript in direktorijev
 
 1. Ustvari poddirektorij, v katerem bodo naloge, na primer `solsko2022` ali `drzavno2025`. **Državno ima isto letnico kot šolsko, čeprav poteka v naslednjem koledarskem letu.**
@@ -19,6 +21,7 @@
     Id naloge: 38
     Država: si
     Smer odgovorov [v/n/2]: v
+    Število odgovorov: 5
     Pravilni odgovor [a/b/c/d/...]: b
     ```
 
@@ -27,12 +30,11 @@
     - Naslov naloge: videli ga bodo učenci, hkrati bo to ime direktorija
     - Id: prepiši iz preglednice.
     - Država: dvočrkovna koda. Uporabi se za zastavico.
-    - Smer: `v` pomeni, da bodo odgovori vodoravno, `n`, da bodo navpično, `d` pa v tabeli 2x2. Od tega je odvisno, kakšna oblika tabele bo v HTML. To je mogoče ročno spreminjati.
+    - Smer: `v` pomeni, da bodo odgovori vodoravno, `n`, da bodo navpično, `2` pa v tabeli v dveh vrsticah. Od tega je odvisno, kakšna oblika tabele bo v HTML. To je mogoče ročno spreminjati in narediti tabelo z več vrsticami ali pa prestavljati odgovore po vrsticah.
+    - Število odgovorov: koliko je podanih odgovorov. Lahko jih je poljubno, tudi več kot 10 (vendar ne pretiravaj).
     - Pravilni odgovor: črka pravilnega odgovora.
         
-    Vloga id-jev: skripta pripravi 9 odgovorov (razen v obliki `2`). Vsak odgovor ima petmestni id oblike `{leto}{id-naloge}{id-odgovora}`. Leta 21 imajo odgovori pri naloge 38 id-je 21381, 23182, ..., 21389. Če kot pravilni odgovor označimo `b`, bo v manifest.json za to nalogo zapisano, da je pravilni odgovor 21382.
-
-    Če ima naloga manj kot devet odgovorov, odvečne pobrišemo. Če jim ima več kot 9, dodamo nove odgovore in jim dodelimo poljubne idje, ki pa **morajo imeti pravilno letnico in id naloge. Če bi pri gornji nalogi dodali pet napačnih odgovorov, imajo lahko vsi id 21389, ali poljuben ID 2138X, razen 21382. Drugih števk ne smemo spreminjati; če bi šli naprej v 21390, 21391 ... bi bil 21391 lahko označen kot pravilni odgovor, če je `a` slučajno pravilni odgovor za nalogo 39.
+    Vloga id-jev: skripta pripravi podano število odgovorov (v obliki `2` jih je število/2 v prvi vrstici, ostali v drugi vratici). Vsak odgovor ima id oblike `{leto}{id-naloge}{id-odgovora}`. Leta 21 imajo odgovori pri naloge 38 id-je 21381, 23182, ..., 21389, 213810, 213811 ... Če kot pravilni odgovor označimo `b`, bo v manifest.json za to nalogo zapisano, da je pravilni odgovor 21382 (črke so po vrsti po angleški abecedi).
 
 4. Skripta je ustvarila nov poddirektorij znotraj `solsko{leto}` oz `drzavno{leto}`. V poddirektorij `resources` dodamo slike, nato pa urejamo `index.html`.
 
