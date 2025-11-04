@@ -3,6 +3,7 @@
 **Disclaimer (by Janez)**: te skripte sem na hitro napisal, ko sem jih potreboval. Določene grozne stvari (npr. inline css v vsaki nalogi) tudi niso moja ideja, temveč so podedovane iz predprejšnjega tekmovalnega sistema. Znal bi narediti tudi lepše. :)
 
 **Popravki (by Alenka)**: Skripte za ustvarjanje nalog popravljene jeseni 2024 in ustrezno popravljena navodila.
+
 **Popravki (by Alenka)**: Oktobra 2025 dodana skripta za ustvarjanje nalog, ki podatke o nalogah prebere iz csv datoteke ter ustvari vse naloge; ustrezno popravljena tudi navodila.
 
 
@@ -38,8 +39,8 @@
         
     Vloga id-jev: skripta pripravi podano število odgovorov (v obliki `2` jih je število/2 v prvi vrstici, ostali v drugi vratici). Vsak odgovor ima id oblike `{leto}{id-naloge}{id-odgovora}`. Leta 21 imajo odgovori pri naloge 38 id-je 21381, 23182, ..., 21389, 213810, 213811 ... Če kot pravilni odgovor označimo `b`, bo v manifest.json za to nalogo zapisano, da je pravilni odgovor 21382 (črke so po vrsti po angleški abecedi).
 
-3. ALTERNATIVA točki 2: pripravi csv datoteko s podatki o nalogah (ID	Naslov	Drzava	Smer_odg	St_odg	Pravilni), ločeni s tab (glej primer datoteke naloge.csv; podatke lahko copy-paste iz Excela v Notepad; pazi na kodiranje utf-8 in zapis šumnikov). ID naloge, ime naloge in državo dobiš iz preglednice z nalogami, dodati moraš še smer odgovorov (v/n/2), število odgovorov (int) in označen pravilni odgovor (a/b/c ...) - te poiščeš v knjižici s prevodi.
-   Poženi `python ustvari_vse.py` (pred tem v datoteki ustvari_vse.py pravilno nastavi ime datoteke s podatki o nalogah) in ustvarile se bodo vse naloge glede na podatke iz datoteke.
+3. ALTERNATIVA točki 2: pripravi csv datoteko s podatki o nalogah (ID	Naslov	Drzava	Smer_odg	St_odg	Pravilni), ločeni s tab (glej primer datoteke naloge.csv; podatke lahko copy-paste iz Excela v Notepad; pazi na kodiranje utf-8 in zapis šumnikov). ID naloge, ime naloge in državo dobiš iz preglednice z nalogami, dodati moraš še smer odgovorov (v/n/2), število odgovorov (int) in označen pravilni odgovor (a/b/c ...) - te poiščeš v knjižici s prevodi.  
+Poženi `python ustvari_vse.py` (pred tem v datoteki ustvari_vse.py pravilno nastavi ime datoteke s podatki o nalogah) in ustvarile se bodo vse naloge glede na podatke iz datoteke.
 
 4. Skripta je ustvarila nov poddirektorij znotraj `solsko{leto}` oz `drzavno{leto}`. V poddirektorij `resources` dodamo slike, nato pa urejamo `index.html`.
 
@@ -53,15 +54,15 @@
 ### Ustvarjanje nalog v prevodu
 
 Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola predhodno javi, da bi želeli prevode). Navodila so za madžarščino (če bi imeli še italijanščino, bi naredili podobno). Naloge v madžarščini imajo ID-je za 100 večje (npr. če ima slo naloga ID 5, ima hu naloga ID 105). Naloge v italijanščini naj imajo ID-je za 200 večje.
-1. v direktoriju `solsko{leto}` oz `drzavno{leto}` kopiraj direktorij z nalogo in imenu dodaj predpono `hu-` (npr. "Sporočilo" --> "hu-Sporočilo"). Za italijanščino bi bila predpona "it-".
+1. v direktoriju `solsko{leto}` oz `drzavno{leto}` kopiraj direktorij z nalogo in imenu dodaj predpono `hu-` (npr. "Sporočilo" --> "hu-Sporočilo"). Za italijanščino bi bila predpona `it-`.
 2. popravi manifest:
     - zamenjaj ID (25032 -> 25132)
     - popravi title (Naslov -> Naslov/HU Naslov)
 3. popravi index.html:
     - zamenjaj title (Naslov -> Naslov/HU Naslov)
-    - dodaj črto (<hr>) po zaključku prvega <div> v <body> (torej pred <form>)
-    - za črto skopiraj cel prvi <div> ter slovensko besedilo zamenjaj z madžarskim
-    - po potrebi dopolni odgovore z madžarskim besedilom
+    - dodaj črto (`<hr>`) po zaključku prvega `<div>` v `<body>` (torej pred `<form>`)
+    - za črto skopiraj cel prvi `<div>` ter slovensko besedilo zamenjaj z madžarskim
+    - po potrebi dopolni tudi odgovore z madžarskim besedilom
 
 ### Pakiranje nalog
 
@@ -90,8 +91,7 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
    - ustrezno spremeni direktorij, na primer `DEST_DIR = "/Users/janez/Downloads/bober-naloge/solsko2025"`
    - spremeni tudi direktorij dve vrstici nižje, v `chdir`.
 
-6. `cd` nazaj v direktorij s skriptami. Tam poženi `python pakiraj.py`. Ta skopira direktorije z nalogami v repozitorij za git, poleg tega pa pripravi skripto `link_tasks`, ki bo na strežniku (ob hooku v git-u) pripravila poddirektorije za skupine in v njih simbolične povezave na naloge.
-
+6. `cd` nazaj v direktorij s skriptami. Tam poženi `python pakiraj.py`. Ta skopira direktorije z nalogami v repozitorij za git, poleg tega pa pripravi skripto `link_tasks`, ki bo na strežniku (ob hooku v git-u) pripravila poddirektorije za skupine in v njih simbolične povezave na naloge.  
 **PAZI:** skripta za pakiranje deluje na sistemu Linux, na Windows pa je problem s kodiranjem cp1252 in tudi s potmi do datotek, zato poskrbi, da jo poženeš v pravem okolju -- po potrebi kopiraj skripte in direktorij z nalogami (solsko2025 oz. drzavno2025) na sistem Linux, zapakiraj naloge ter prenesi zapakirane naloge nazaj na Windows.
 
 7. Potisni naloge na strežnik. `cd` v direktorij `/Users/janez/Downloads/bober-naloge/` in tam:
