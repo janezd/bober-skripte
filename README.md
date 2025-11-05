@@ -85,7 +85,7 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
 4. Kloniraj repozitorij z nalogami.
 
    ```
-   git clone ssh://acm-bober-2021.fri1.uni-lj.si/home/j/bober-naloge.git
+   git clone ssh://bober.fri.uni-lj.si/home/j/bober-naloge.git
    ```
 5. V skripti `pakiraj.py` poišče `DEST_DIR =` in 
    - ustrezno spremeni direktorij, na primer `DEST_DIR = "/Users/janez/Downloads/bober-naloge/solsko2025"`
@@ -109,7 +109,7 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
 8. Ker gornji korak, izgleda, ne naredi, kar bi moral, je potrebno (prvič?) ročno pognati nekaj stvari na strežniku. Pojdi torej na strežnik
 
    ```
-   ssh j@acm-bober-2021.fri1.uni-lj.si
+   ssh j@bober.fri.uni-lj.si
    ```
 
    potem pa:
@@ -119,7 +119,9 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
    git pull
    cd solsko2022
    . link_tasks
-   /home/bober/bober/django/bober/import_tasks_venv.sh
+   cd ~
+   
+   ./import_tasks_venv.sh
    ```
 
    Tisti `link_tasks` naredi poddirektorij `skupine` s poddirektoriji za tekmovanja, ki potem vsebujejo simbolične linke na naloge.
