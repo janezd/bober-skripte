@@ -11,8 +11,8 @@
 
 1. Ustvari poddirektorij, v katerem bodo naloge, na primer `solsko2025` ali `drzavno2025`. **Državno ima isto letnico kot šolsko, čeprav poteka v naslednjem koledarskem letu.**
 2. V direktorij skopiraj task.css, da bodo naloge videti (približno) tako, kot bodo v sistemu.
-3. Poberi vsebino tega repozitorija v direktorij, ki mora biti sosed direktorija `solsko2025`.
-4. V preglednici z nalogami dodaj ID-je nalog. ID-je dobijo le naloge, ki jih damo v tekmovalni sistem, to je od 6. razreda dalje. (ID prve naloge naj ne bo 1 temveč 5, ker je to hkrati številka vrstice, sicer se boš stalno motil in prepisoval številke vrstic namesto ID-jev nalog.)
+3. Poberi vsebino tega repozitorija v direktorij, ki mora biti sosed direktorija `solsko{leto}` oz. `drzavno{leto}`.
+4. V preglednici z nalogami dodaj ID-je nalog. ID-je dobijo le naloge, ki jih damo v tekmovalni sistem, to je od 6. razreda dalje. (ID prve naloge naj ne bo 1 temveč 5, ker je to hkrati številka vrstice, sicer se boš stalno motil in prepisoval številke vrstic namesto ID-jev nalog.) **PAZI:** ID-ji nalog za šolsko in državno tekmovanje se ne smejo podvajati - oštevilči naloge za šolsko npr. od 1 naprej, za državno pa npr. od 51 naprej.
 
 ### Ustvarjanje naloge
 
@@ -37,7 +37,7 @@
     - Število odgovorov: koliko je podanih odgovorov. Lahko jih je poljubno, tudi več kot 10 (vendar ne pretiravaj).
     - Pravilni odgovor: črka pravilnega odgovora.
         
-    Vloga id-jev: skripta pripravi podano število odgovorov (v obliki `2` jih je število/2 v prvi vrstici, ostali v drugi vratici). Vsak odgovor ima id oblike `{leto}{id-naloge}{id-odgovora}`. Leta 21 imajo odgovori pri naloge 38 id-je 21381, 23182, ..., 21389, 213810, 213811 ... Če kot pravilni odgovor označimo `b`, bo v manifest.json za to nalogo zapisano, da je pravilni odgovor 21382 (črke so po vrsti po angleški abecedi).
+    Vloga id-jev: skripta pripravi podano število odgovorov (v obliki `2` jih je število/2 v prvi vrstici, ostali v drugi vrstici). Vsak odgovor ima id oblike `{leto-na-dve-mesti}{id-naloge}{id-odgovora}`. Leta 2021 imajo odgovori pri nalogi z ID 38 id-je 21381, 21382, ..., 21389, 213810, 213811 ... Če kot pravilni odgovor označimo `b`, bo v manifest.json za to nalogo zapisano, da je pravilni odgovor 21382 (črke so po vrsti po angleški abecedi).
 
 3. ALTERNATIVA točki 2: pripravi csv datoteko s podatki o nalogah (ID	Naslov	Drzava	Smer_odg	St_odg	Pravilni), ločeni s tab (glej primer datoteke naloge.csv; podatke lahko copy-paste iz Excela v Notepad; pazi na kodiranje utf-8 in zapis šumnikov). ID naloge, ime naloge in državo dobiš iz preglednice z nalogami, dodati moraš še smer odgovorov (v/n/2), število odgovorov (int) in označen pravilni odgovor (a/b/c ...) - te poiščeš v knjižici s prevodi.  
 Poženi `python ustvari_vse.py` (pred tem v datoteki ustvari_vse.py pravilno nastavi ime datoteke s podatki o nalogah) in ustvarile se bodo vse naloge glede na podatke iz datoteke.
@@ -87,7 +87,7 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
    ```
    git clone ssh://bober.fri.uni-lj.si/home/j/bober-naloge.git
    ```
-5. V skripti `pakiraj.py` poišče `DEST_DIR =` in 
+5. V skripti `pakiraj.py` poišči `DEST_DIR =` (vrstica 42) in 
    - ustrezno spremeni direktorij, na primer `DEST_DIR = "/Users/janez/Downloads/bober-naloge/solsko2025"`
    - spremeni tudi direktorij dve vrstici nižje, v `chdir`.
 

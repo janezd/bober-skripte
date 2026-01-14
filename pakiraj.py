@@ -39,7 +39,7 @@ def copy(name, src, dst):
     else:
         shutil.copy(src, dst)
         
-DEST_DIR = "/Users/janez/Downloads/bober-naloge/solsko2022"
+DEST_DIR = "../pakirane_naloge"
 try_mkdir(DEST_DIR)
 os.chdir("../solsko2022")
 true, false = True, False
@@ -50,18 +50,19 @@ for dir in os.listdir("."):
     if not os.path.exists(index_file):
         continue
     try_mkdir(dest_dir)
-    index = open(index_file).read()
+    #index = open(index_file).read()
+    index = open(index_file, encoding="utf-8").read()
     index = index.replace("../task.css", "/static/css/task.css")
-    open(os.path.join(dest_dir, "index.html"), "wt").write(index)
+    open(os.path.join(dest_dir, "index.html"), "wt", encoding="utf-8").write(index)
     copy("Manifest.json", dir, dest_dir)
     copy("resources", dir, dest_dir)
 
-    manifest = eval(open(os.path.join(dir, "Manifest.json")).read())
+    manifest = eval(open(os.path.join(dir, "Manifest.json"), encoding="utf-8").read())
     ids[manifest["id"]] = dir
 
 
 missing = set()
-linkscript = open(os.path.join(DEST_DIR, "link_tasks"), "wt")
+linkscript = open(os.path.join(DEST_DIR, "link_tasks"), "wt", encoding="utf-8")
 linkscript.write("rm -rf skupine\n")
 linkscript.write("mkdir skupine\n")
 for line in open("groups.txt"):
