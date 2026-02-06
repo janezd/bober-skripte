@@ -12,7 +12,9 @@
 1. Ustvari poddirektorij, v katerem bodo naloge, na primer `solsko2025` ali `drzavno2025`. **Državno ima isto letnico kot šolsko, čeprav poteka v naslednjem koledarskem letu.**
 2. V direktorij skopiraj task.css, da bodo naloge videti (približno) tako, kot bodo v sistemu.
 3. Poberi vsebino tega repozitorija v direktorij, ki mora biti sosed direktorija `solsko{leto}` oz. `drzavno{leto}`.
-4. V preglednici z nalogami dodaj ID-je nalog. ID-je dobijo le naloge, ki jih damo v tekmovalni sistem, to je od 6. razreda dalje. (ID prve naloge naj ne bo 1 temveč 5, ker je to hkrati številka vrstice, sicer se boš stalno motil in prepisoval številke vrstic namesto ID-jev nalog.) **PAZI:** ID-ji nalog za šolsko in državno tekmovanje se ne smejo podvajati - oštevilči naloge za šolsko npr. od 1 naprej, za državno pa npr. od 51 naprej.
+4. V preglednici z nalogami dodaj ID-je nalog. ID-je dobijo le naloge, ki jih damo v tekmovalni sistem, to je od 6. razreda dalje. (ID prve naloge naj ne bo 1 temveč 5, ker je to hkrati številka vrstice, sicer se boš stalno motil in prepisoval številke vrstic namesto ID-jev nalog.)  
+**PAZI:** ID-ji nalog za šolsko in državno tekmovanje se ne smejo podvajati - oštevilči naloge za šolsko npr. od 1 naprej, za državno pa npr. od 51 naprej.
+
 
 ### Ustvarjanje naloge
 
@@ -51,6 +53,7 @@ Poženi `python ustvari_vse.py` (pred tem v datoteki ustvari_vse.py pravilno nas
     
         Edina finta: če hočeš uporabljati `{` in `}` moraš pisati `{{` in `}}`. Opravičujem se, ker sem len.
 
+
 ### Ustvarjanje nalog v prevodu
 
 Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola predhodno javi, da bi želeli prevode). Navodila so za madžarščino (če bi imeli še italijanščino, bi naredili podobno). Naloge v madžarščini imajo ID-je za 100 večje (npr. če ima slo naloga ID 5, ima hu naloga ID 105). Naloge v italijanščini naj imajo ID-je za 200 večje.
@@ -64,7 +67,8 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
     - za črto skopiraj cel prvi `<div>` ter slovensko besedilo zamenjaj z madžarskim
     - po potrebi dopolni tudi odgovore z madžarskim besedilom
 
-### Pakiranje nalog
+
+### Pakiranje nalog in dodajanje v tekmovalni sistem
 
 0. Uredi si dostop do strežnika z nalogami. Potrebuješ ključ ssh.
 1. V direktoriju z nalogami (npr. `solsko2025`, se pravi, direktoriju, katerega poddirektoriji vsebujejo posamične naloge) naredi datoteko `groups.txt` z vsebino takšne oblike:
@@ -89,7 +93,7 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
    ```
 5. V skripti `pakiraj.py` poišči `DEST_DIR =` (vrstica 42) in 
    - ustrezno spremeni direktorij, na primer `DEST_DIR = "/Users/janez/Downloads/bober-naloge/solsko2025"`
-   - spremeni tudi direktorij dve vrstici nižje, v `chdir`.
+   - spremeni tudi direktorij dve vrstici nižje (vrstica 44), v `os.chdir()`.
 
 6. `cd` nazaj v direktorij s skriptami. Tam poženi `python pakiraj.py`. Ta skopira direktorije z nalogami v repozitorij za git, poleg tega pa pripravi skripto `link_tasks`, ki bo na strežniku (ob hooku v git-u) pripravila poddirektorije za skupine in v njih simbolične povezave na naloge.  
 **PAZI:** skripta za pakiranje deluje na sistemu Linux, na Windows pa je problem s kodiranjem cp1252 in tudi s potmi do datotek, zato poskrbi, da jo poženeš v pravem okolju -- po potrebi kopiraj skripte in direktorij z nalogami (solsko2025 oz. drzavno2025) na sistem Linux, zapakiraj naloge ter prenesi zapakirane naloge nazaj na Windows.
@@ -106,7 +110,7 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
 
    Če se ob tem uvažanju nalog po skupinah izpisuje napaka `Resource matching query does not exist.`, je vse OK.
 
-8. Ker gornji korak, izgleda, ne naredi, kar bi moral, je potrebno (prvič?) ročno pognati nekaj stvari na strežniku. Pojdi torej na strežnik
+8. Ob potisku nalog na strežnik (git push) se izvede skripta (hook v git), ki poskrbi za uvoz nalog v tekmovalni sistem. Če se to iz kateregakoli vzroka ne izvede, je treba te stvari ročno pognati na strežniku. Pojdi torej na strežnik
 
    ```
    ssh j@bober.fri.uni-lj.si
@@ -128,6 +132,11 @@ Naloge za OŠ so lahko tudi v madžarščini ali italijanščini (če šola pred
 
    Zadnja vrstica uvozi naloge v tekmovanje.
 
-   **Če se kasneje izkaže, da v kakšnem tekmovanju manjka kakšna naloga, ali pa je kakšna napačna ali odveč,** je najbrž potrebno ponovno ročno zagnati `link_tasks`.
+   **Če se kasneje izkaže, da v kakšnem tekmovanju manjka kakšna naloga, ali pa je kakšna napačna ali odveč,** je najbrž potrebno ponovno ročno zagnati `link_tasks` (če se skripta ne izvede ob git push).
 
-9. Ker tudi gornji korak, kot kaže, ne uvozi nalog, pišeš Polžu. :)
+9. Če tudi gornji korak ne uvozi nalog, pišeš Polžu. :)
+
+
+### Arhiviranje na OneDrive
+
+1. Naloge v direktoriju `solsko{leto}` oz. `drzavno{leto}` (nepakirane) prekopiraj na OneDrive pod tekmovanje tekočega leta.
